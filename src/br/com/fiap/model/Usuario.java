@@ -4,24 +4,24 @@ import java.sql.Date;
 /* JAVABEAN
 * classe com apenas atributos contrutores e getters/setters (serve de objeto para persistir no db) */
 public class Usuario {
-    private long id;
+    private int id;
     private String nome;
     private String email;
     private String senha;
     private Date data = new Date(System.currentTimeMillis());
 
-    public Usuario(long id, String nome, String email, String senha) {
+    public Usuario(int id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
