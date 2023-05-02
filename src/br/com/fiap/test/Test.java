@@ -9,9 +9,8 @@ public class Test {
     public static void main(String[] args) throws SQLException {
         new ConnectionFactory().conectar();
         UsuarioDAO DAO = new UsuarioDAO();
-        Usuario user = new Usuario(1,"Pedro", "pedro@gmail.com","12345");
+        Usuario user = new Usuario(4,"Rafael", "rafa@gmail.com","12345");
 
         DAO.insert(user);
-
     }
 }

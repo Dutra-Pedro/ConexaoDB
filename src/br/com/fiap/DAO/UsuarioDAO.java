@@ -13,15 +13,35 @@ public class UsuarioDAO {
     }
 
     public void insert(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO USUARIO(id_usuario, nome, email, senha, dt_registro) VALUES (?,?,?,?,?)";
-        PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setInt(1,usuario.getId());
-        stmt.setString(2, usuario.getNome());
-        stmt.setString(3, usuario.getEmail());
-        stmt.setString(4, usuario.getSenha());
-        stmt.setDate(5,usuario.getData());
+        try {
+            String sql = "INSERT INTO USUARIO(id_usuario, nome, email, senha, dt_registro) VALUES (?,?,?,?,?)";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, usuario.getId());
+            stmt.setString(2, usuario.getNome());
+            stmt.setString(3, usuario.getEmail());
+            stmt.setString(4, usuario.getSenha());
+            stmt.setDate(5, usuario.getData());
 
-        stmt.execute();
-        stmt.close();
+            stmt.execute();
+            stmt.close();
+        } catch (Exception ex){
+            throw new SQLException(ex);
+        }
+    }
+
+    public void update(Usuario usuario) throws SQLException {
+        String sql = "UPDATE USUARIO SET nome=?, email=?, senha=? WHERE id_usuario=?";
+        try{
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getSenha());
+            stmt.setInt(4,usuario.getId());
+
+            stmt.execute();
+            stmt.close();
+        } catch (Exception ex){
+            throw new SQLException(ex);
+        }
     }
 }

@@ -2,7 +2,7 @@ package br.com.fiap.model;
 import java.sql.Date;
 
 /* JAVABEAN
-* classe com apenas atributos contrutores e getters/setters (serve de objeto para persistir no db) */
+* classe com apenas atributos construtores e getters/setters (serve de objeto para persistir no db) */
 public class Usuario {
     private int id;
     private String nome;
