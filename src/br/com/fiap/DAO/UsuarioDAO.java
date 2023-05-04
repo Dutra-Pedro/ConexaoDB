@@ -5,7 +5,10 @@ import br.com.fiap.model.Usuario;
 import javax.management.StringValueExp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO {
     private Connection conexao;
@@ -47,7 +50,7 @@ public class UsuarioDAO {
         }
     }
 
-    public void delete(int id) throws SQLException{
+    public void delete(int id){
         String sql = "DELETE FROM USUARIO WHERE id_usuario=?";
         try{
             PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -56,6 +59,57 @@ public class UsuarioDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public List<Usuario> select() throws SQLException {
+        try {
+            List<Usuario> usuarios = new ArrayList<Usuario>();
+            String sql = "SELECT * FROM USUARIO";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id_usuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setData(rs.getDate("dt_registro"));
+
+                usuarios.add(usuario);
+            }
+
+            rs.close();
+            stmt.close();
+            return usuarios;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public Usuario selectById(int id) throws SQLException {
+        try {
+           Usuario usuario = new Usuario();
+            String sql = "SELECT * FROM USUARIO WHERE ID=?";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Usuario user = new Usuario();
+                user.setId(rs.getInt("id_usuario"));
+                user.setNome(rs.getString("nome"));
+                user.setEmail(rs.getString("email"));
+                user.setSenha(rs.getString("senha"));
+                user.setData(rs.getDate("dt_registro"));
+            }
+
+            rs.close();
+            stmt.close();
+            return usuario;
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
