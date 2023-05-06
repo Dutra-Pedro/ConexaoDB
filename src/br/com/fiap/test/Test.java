@@ -37,7 +37,8 @@ public class Test {
 //                    "Data: "+sdf.format(user.getData()));
 //        }
 
-        Usuario user = DAO.selectById(5);
-        System.out.println(user);
+        Usuario user = DAO.selectById(1);
+        System.out.println("Nome: "+user.getNome()+"\n" +
+                "Email: "+user.getEmail());
     }
 }

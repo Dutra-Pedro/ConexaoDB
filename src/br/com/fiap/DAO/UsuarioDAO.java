@@ -71,14 +71,14 @@ public class UsuarioDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Usuario usuario = new Usuario();
-                usuario.setId(rs.getInt("id_usuario"));
-                usuario.setNome(rs.getString("nome"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setSenha(rs.getString("senha"));
-                usuario.setData(rs.getDate("dt_registro"));
+                Usuario user = new Usuario();
+                user.setId(rs.getInt("id_usuario"));
+                user.setNome(rs.getString("nome"));
+                user.setEmail(rs.getString("email"));
+                user.setSenha(rs.getString("senha"));
+                user.setData(rs.getDate("dt_registro"));
 
-                usuarios.add(usuario);
+                usuarios.add(user);
             }
 
             rs.close();
@@ -91,24 +91,21 @@ public class UsuarioDAO {
 
     public Usuario selectById(int id) throws SQLException {
         try {
-           Usuario usuario = new Usuario();
-            String sql = "SELECT * FROM USUARIO WHERE ID=?";
+            Usuario user = new Usuario();
+            String sql = "SELECT * FROM USUARIO WHERE id_usuario=?";
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                Usuario user = new Usuario();
-                user.setId(rs.getInt("id_usuario"));
-                user.setNome(rs.getString("nome"));
-                user.setEmail(rs.getString("email"));
-                user.setSenha(rs.getString("senha"));
-                user.setData(rs.getDate("dt_registro"));
-            }
+            user.setId(id);
+            user.setNome(rs.getString("nome"));
+            user.setEmail(rs.getString("email"));
+            user.setSenha(rs.getString("senha"));
+            user.setData(rs.getDate("dt_registro"));
 
             rs.close();
             stmt.close();
-            return usuario;
+            return user;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
