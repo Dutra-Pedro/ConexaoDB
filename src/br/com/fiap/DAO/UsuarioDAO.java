@@ -18,19 +18,15 @@ public class UsuarioDAO {
     }
 
     public void insert(Usuario usuario) throws SQLException {
-        try {
-            String sql = "INSERT INTO USUARIOS(nome, email, senha, dt_registro) VALUES (?,?,?,?)";
-            PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getEmail());
-            stmt.setString(3, usuario.getSenha());
-            stmt.setDate(4, usuario.getData());
+        String sql = "INSERT INTO USUARIOS(nome, email, senha, dt_registro) VALUES (?,?,?,?)";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setString(1, usuario.getNome());
+        stmt.setString(2, usuario.getEmail());
+        stmt.setString(3, usuario.getSenha());
+        stmt.setDate(4, usuario.getData());
 
-            stmt.execute();
-            stmt.close();
-        } catch (Exception ex){
-            throw new RuntimeException(ex);
-        }
+        stmt.execute();
+        stmt.close();
     }
 
     public void update(Usuario usuario) throws SQLException {
