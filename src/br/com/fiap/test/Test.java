@@ -11,10 +11,10 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) throws SQLException {
         UsuarioDAO DAO = new UsuarioDAO();
-//        Usuario user1 = new Usuario(5,"Rafaela", "rafaela@gmail.com","1235");
-//        Usuario user2 = new Usuario(6,"Miguel", "miguelito@gmail.com","345");
-//        Usuario user3 = new Usuario(7,"Luigi", "lulu@gmail.com","12565");
-//        Usuario user4 = new Usuario(8,"Maria", "m4ria@gmail.com","4862");
+//        Usuario user1 = new Usuario("Rafaela", "rafaela@gmail.com","1235");
+//        Usuario user2 = new Usuario("Miguel", "miguelito@gmail.com","345");
+//        Usuario user3 = new Usuario("Luigi", "lulu@gmail.com","12565");
+//        Usuario user4 = new Usuario("Maria", "m4ria@gmail.com","4862");
 
 //        List<Usuario> lista = new ArrayList<Usuario>();
 //        lista.add(user1);
@@ -36,6 +36,9 @@ public class Test {
 //                    "Senha: "+user.getSenha()+"\n" +
 //                    "Data: "+sdf.format(user.getData()));
 //        }
+
+//        Usuario pedro = new Usuario("Pedro", "pepeu@gmail.com","88657253");
+//        DAO.insert(pedro);
 
         Usuario user = DAO.selectById(1);
         System.out.println("Nome: "+user.getNome()+"\n" +

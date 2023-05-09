@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class TestUpdate {
     public static void main(String[] args) throws SQLException {
         UsuarioDAO dao = new UsuarioDAO();
-        Usuario user = new Usuario(3,"Rafaela","rafinha@gmail.com","54321");
+        Usuario user = new Usuario("Rafaela","rafinha@gmail.com","54321");
 
         dao.update(user);
     }

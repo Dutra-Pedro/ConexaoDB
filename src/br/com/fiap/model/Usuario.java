@@ -10,14 +10,13 @@ public class Usuario {
     private String senha;
     private Date data = new Date(System.currentTimeMillis());
 
-    public Usuario(int id, String nome, String email, String senha) {
-        this.id = id;
+    public Usuario(){}
+
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
-
-    public Usuario(){}
 
     public int getId() {
         return id;
