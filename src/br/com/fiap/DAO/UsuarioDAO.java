@@ -11,10 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAO {
-    private Connection conexao;
+    private static Connection conexao;
 
     public UsuarioDAO() {
-        this.conexao = new ConnectionFactory().conectar();
+        conectarDAO();
+    }
+
+    public static Connection conectarDAO() {
+        if (conexao == null) {
+            conexao = new ConnectionFactory().conectar();
+        }
+        return conexao;
     }
 
     public void insert(Usuario usuario) throws SQLException {
