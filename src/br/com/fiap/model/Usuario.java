@@ -1,4 +1,6 @@
 package br.com.fiap.model;
+import br.com.fiap.util.CriptografiaUtils;
+
 import java.sql.Date;
 
 /* JAVABEAN
@@ -13,9 +15,9 @@ public class Usuario {
     public Usuario(){}
 
     public Usuario(String nome, String email, String senha) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+        setNome(nome);
+        setEmail(email);
+        setSenha(senha);
     }
 
     public int getId() {
@@ -47,7 +49,11 @@ public class Usuario {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        try {
+            this.senha = CriptografiaUtils.criptografar(senha);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public Date getData() {
